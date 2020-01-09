@@ -17,19 +17,28 @@ public class JetPlane extends Aircraft implements Flyable {
         switch (weather){
             case "SUN":
                 System.out.println("It's Sun "+name);
+                coordinates.setHeight(coordinates.getHeight() + 2);
+                coordinates.setLatitude(coordinates.getLatitude() + 10);
                 break;
             case "RAIN":
                 System.out.println("It's rain now "+name);
+                coordinates.setLatitude(coordinates.getLatitude() + 5);
                 break;
             case "SNOW":
                 System.out.println("It's show now "+name);
+                coordinates.setHeight(coordinates.getHeight() - 7);
                 break;
             case "FOG":
                 System.out.println("It's fog now "+name);
+                coordinates.setLatitude(coordinates.getLatitude() + 1);
                 break;
             default:
-                System.out.println("Unknown weather "+name);
+                System.out.println("Unknown weather  "+name);
                 break;
+        }
+        if (coordinates.getHeight() <= 0){
+            System.out.println("Good by");
+            weatherTower.unregister(this);
         }
     }
 
@@ -37,5 +46,10 @@ public class JetPlane extends Aircraft implements Flyable {
     public void registerTower(WeatherTower tower){
         this.weatherTower = tower;
         tower.register(this);
+    }
+
+    @Override
+    public String toString() {
+        return "JetPlane#"+name+"("+id+")";
     }
 }

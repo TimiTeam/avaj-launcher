@@ -20,6 +20,8 @@ public class Main {
         catch (Exception e){
             System.out.println(e.fillInStackTrace());
         }
-        weatherTower.changeWeather();
+        for(int i = 0; i < 5; ++i) {
+            weatherTower.changeWeather();
+        }
     }
 }
