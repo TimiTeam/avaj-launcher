@@ -20,7 +20,9 @@ public class Tower {
     }
 
     protected void conditionsChanged(){
-        this.observers.forEach(Flyable::updateConditions);
-
+        //this.observers.forEach(Flyable::updateConditions);
+        for(Flyable flyable : observers){
+            flyable.updateConditions();
+        }
     }
 }
