@@ -20,7 +20,7 @@ public class Main {
         catch (Exception e){
             System.out.println(e.fillInStackTrace());
         }
-        for(int i = 0; i < 5; ++i) {
+        for(int i = 0; i < 10; ++i) {
             weatherTower.changeWeather();
         }
     }

@@ -2,11 +2,10 @@ package ua.unit.tbujalo;
 
 import ua.unit.tbujalo.transports.Flyable;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Tower {
-    private List<Flyable> observers = new ArrayList<>();
+    private List<Flyable> observers = new LinkedList<>();
 
     public void register(Flyable flyable)
     {
@@ -20,9 +19,8 @@ public class Tower {
     }
 
     protected void conditionsChanged(){
-        //this.observers.forEach(Flyable::updateConditions);
-        for(Flyable flyable : observers){
-            flyable.updateConditions();
-        }
+        Set<Flyable> set = new HashSet<>(observers);
+
+        set.forEach(Flyable::updateConditions);
     }
 }

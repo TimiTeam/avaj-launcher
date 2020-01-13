@@ -1,7 +1,7 @@
-find . -name *.java > sources.txt
+find src/ -name "*.java" > sources.txt
 mkdir -p bin
 javac -d bin -sourcepath src @sources.txt
-if [ $? == 0 ]
+if [ $? -eq 0 ]
 then
-java -cp bin:ua/unit/tbujalo/ ua.unit.tbujalo.Main
+	java -cp bin:ua/unit/tbujalo/ ua.unit.tbujalo.Main
 fi
