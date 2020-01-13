@@ -20,7 +20,6 @@ public class Tower {
 
     protected void conditionsChanged(){
         Set<Flyable> set = new HashSet<>(observers);
-
         set.forEach(Flyable::updateConditions);
     }
 }

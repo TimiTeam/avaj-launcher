@@ -1,27 +1,16 @@
 package ua.unit.tbujalo;
 
-import ua.unit.tbujalo.transports.AircraftFactory;
-import ua.unit.tbujalo.transports.Flyable;
-
-import java.util.Random;
+import ua.unit.tbujalo.fileReader.ReadScenario;
 
 public class Main {
 
     public static void main(String[] args) {
-        WeatherTower weatherTower = new WeatherTower();
-        AircraftFactory factory = new AircraftFactory();
-        String aircraftNames[] = {"Helicopter", "Baloon", "JetPlane"};
-        String transportNames[] = {"H1", "B1", "J1"};
-        try {
-            for (int i = 0; i < aircraftNames.length; ++i) {
-                factory.newAircraft(aircraftNames[i], transportNames[i], new Random().nextInt(100), new Random().nextInt(100), new Random().nextInt(100)).registerTower(weatherTower);
+        if (args.length == 1){
+            ReadScenario.readFile(args[0]);
+            WeatherTower wt = ReadScenario.getWeatherTower();
+            for(int i = 0; i < ReadScenario.getNumbersOfTheTimeNeedSimulate(); ++i){
+                wt.changeWeather();
             }
-        }
-        catch (Exception e){
-            System.out.println(e.fillInStackTrace());
-        }
-        for(int i = 0; i < 10; ++i) {
-            weatherTower.changeWeather();
         }
     }
 }
