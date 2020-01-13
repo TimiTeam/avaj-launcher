@@ -25,7 +25,7 @@ public class ReadScenario {
     private Flyable getAircraftFromString(String line, int numLine) throws Exception {
         String splitted[] = line.split(" ");
         if (splitted.length != 5)
-            throw new SyntaxErrorException();
+            throw new SyntaxErrorException("invalid numbers of parameters");
         return factory.newAircraft(splitted[0], splitted[1], Integer.parseInt(splitted[2]), Integer.parseInt(splitted[3]), Integer.parseInt(splitted[4]));
     }
 
@@ -45,7 +45,7 @@ public class ReadScenario {
             return false;
         }
         catch (NumberFormatException e){
-            System.out.println("Can't find number "+e.getMessage()+" int file "+fileName+"at line: "+i+": "+line);
+            System.out.println("Can't parse integer "+e.getMessage()+" int file "+fileName+"at line: "+i+": "+line);
         }
         catch (Exception e){
             System.out.println(e.getMessage()+" in file "+fileName+" at line: "+i+": "+line);

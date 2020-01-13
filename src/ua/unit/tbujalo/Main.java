@@ -11,6 +11,8 @@ public class Main {
             for(int i = 0; i < ReadScenario.getNumbersOfTheTimeNeedSimulate(); ++i){
                 wt.changeWeather();
             }
+        }else{
+            System.out.println("Need enter file name as program arguments");
         }
     }
 }
