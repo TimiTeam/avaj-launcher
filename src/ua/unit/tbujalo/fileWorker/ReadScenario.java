@@ -1,14 +1,13 @@
 package ua.unit.tbujalo.fileWorker;
 
 import ua.unit.tbujalo.WeatherTower;
+import ua.unit.tbujalo.fileWorker.readException.SyntaxErrorException;
 import ua.unit.tbujalo.transports.AircraftFactory;
 import ua.unit.tbujalo.transports.Flyable;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
-
 public class ReadScenario {
     private static ReadScenario readScenario = new ReadScenario();
     private AircraftFactory factory;
@@ -26,7 +25,7 @@ public class ReadScenario {
     private Flyable getAircraftFromString(String line, int numLine) throws Exception {
         String splitted[] = line.split(" ");
         if (splitted.length != 5)
-            throw new ParseException("Wrong aircraft properties", numLine);
+            throw new SyntaxErrorException();
         return factory.newAircraft(splitted[0], splitted[1], Integer.parseInt(splitted[2]), Integer.parseInt(splitted[3]), Integer.parseInt(splitted[4]));
     }
 
@@ -45,8 +44,11 @@ public class ReadScenario {
             System.err.println("Error opening file: "+fileName);
             return false;
         }
+        catch (NumberFormatException e){
+            System.out.println("Can't find number "+e.getMessage()+" int file "+fileName+"at line: "+i+": "+line);
+        }
         catch (Exception e){
-            System.out.println("Error reading from file: "+fileName+" at line: "+i+": "+line);
+            System.out.println(e.getMessage()+" in file "+fileName+" at line: "+i+": "+line);
             return false;
         }
         readScenario.weatherTower = weatherTower;

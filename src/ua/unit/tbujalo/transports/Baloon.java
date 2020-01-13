@@ -17,7 +17,7 @@ public class Baloon extends Aircraft implements Flyable {
         switch (weather){
             case "SUN":
                 outputWriter.writeMessage(this+": Great clear sky, i'm moving up");
-                coordinates.setHeight(coordinates.getHeight() + 4);
+                coordinates.setHeight(coordinates.getHeight() + 4 < 100 ? coordinates.getHeight() + 4 : 100);
                 coordinates.setLongitude(coordinates.getLongitude() + 2);
                 break;
             case "RAIN":

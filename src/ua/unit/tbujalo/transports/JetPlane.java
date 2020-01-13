@@ -17,7 +17,7 @@ public class JetPlane extends Aircraft implements Flyable {
         switch (weather){
             case "SUN":
                 outputWriter.writeMessage(this+": *Who loves the sun? Pa-pa-pa-pa. Who loves the sun?* (sing 'Velvet Underground - Who Loves the Sun')");
-                coordinates.setHeight(coordinates.getHeight() + 2);
+                coordinates.setHeight(coordinates.getHeight() + 2 < 100 ? coordinates.getHeight() + 2 : 100);
                 coordinates.setLatitude(coordinates.getLatitude() + 10);
                 break;
             case "RAIN":

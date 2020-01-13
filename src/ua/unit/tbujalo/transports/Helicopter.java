@@ -17,7 +17,7 @@ public class Helicopter extends Aircraft implements Flyable {
         switch (weather){
             case "SUN":
                 outputWriter.writeMessage(this+": Sky is clear ");
-                coordinates.setHeight(coordinates.getHeight() + 2);
+                coordinates.setHeight(coordinates.getHeight() + 2 < 100 ? coordinates.getHeight() + 2 : 100);
                 coordinates.setLongitude(coordinates.getLongitude() + 10);
                 break;
             case "RAIN":

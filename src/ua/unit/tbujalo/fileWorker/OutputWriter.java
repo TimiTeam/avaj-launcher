@@ -9,7 +9,7 @@ public class OutputWriter {
     private String fileName;
 
     private OutputWriter() {
-        fileName = "output.txt";
+        fileName = "simulation.txt";
         try (PrintWriter pw = new PrintWriter(new FileOutputStream(fileName))){
             pw.write("");
         } catch (FileNotFoundException e) {
