@@ -19,7 +19,7 @@ public class ReadScenario {
     private ReadScenario() {
         fileName = "";
         repeatTimes = 0;
-        weatherTower = null;
+        weatherTower = new WeatherTower();
         factory = new AircraftFactory();
     }
 
@@ -32,22 +32,24 @@ public class ReadScenario {
 
     public static boolean readFile(String fileName){
         readScenario.fileName = fileName;
+        WeatherTower weatherTower = new WeatherTower();
         String line = "";
+        int i = 1;
         try (BufferedReader bf = new BufferedReader(new FileReader(fileName))){
            line = bf.readLine();
             readScenario.repeatTimes = Integer.parseInt(line);
-            readScenario.weatherTower = new WeatherTower();
-            for (int i = 1; (line = bf.readLine()) != null; ++i){
-                readScenario.getAircraftFromString(line, i).registerTower(readScenario.weatherTower);
+            for (; (line = bf.readLine()) != null; ++i){
+                readScenario.getAircraftFromString(line, i).registerTower(weatherTower);
             }
         }catch (IOException e){
             System.err.println("Error opening file: "+fileName);
             return false;
         }
         catch (Exception e){
-            System.out.println("Error reading from file: "+fileName+" at line: "+line);
+            System.out.println("Error reading from file: "+fileName+" at line: "+i+": "+line);
             return false;
         }
+        readScenario.weatherTower = weatherTower;
         return true;
     }
 
