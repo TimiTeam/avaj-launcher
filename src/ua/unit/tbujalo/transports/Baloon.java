@@ -16,20 +16,20 @@ public class Baloon extends Aircraft implements Flyable {
         String weather = weatherTower.getWeather(this.coordinates);
         switch (weather){
             case "SUN":
-                System.out.println("It's Sun "+name);
+                outputWriter.writeMessage(this+": Great clear sky, i'm moving up");
                 coordinates.setHeight(coordinates.getHeight() + 4);
                 coordinates.setLongitude(coordinates.getLongitude() + 2);
                 break;
             case "RAIN":
-                System.out.println("It's rain now "+name);
+                outputWriter.writeMessage(this+": I will be strong, I will stand");
                 coordinates.setHeight(coordinates.getHeight() - 5);
                 break;
             case "SNOW":
-                System.out.println("It's show now "+name);
+                outputWriter.writeMessage(this+": Noo, snow is kill me...");
                 coordinates.setHeight(coordinates.getHeight() - 15);
                 break;
             case "FOG":
-                System.out.println("It's fog now "+name);
+                outputWriter.writeMessage(this+": Don't see the earth...it's scared");
                 coordinates.setHeight(coordinates.getHeight() - 3);
                 break;
             default:
@@ -37,7 +37,7 @@ public class Baloon extends Aircraft implements Flyable {
                 break;
         }
         if (coordinates.getHeight() <= 0){
-            System.out.println("Good by");
+            outputWriter.writeMessage(this+":   Goodbye I'm down");
             weatherTower.unregister(this);
         }
     }

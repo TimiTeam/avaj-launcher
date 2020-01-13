@@ -16,20 +16,20 @@ public class Helicopter extends Aircraft implements Flyable {
         String weather = weatherTower.getWeather(this.coordinates);
         switch (weather){
             case "SUN":
-                System.out.println("It's Sun "+name);
+                outputWriter.writeMessage(this+": Sky is clear ");
                 coordinates.setHeight(coordinates.getHeight() + 2);
                 coordinates.setLongitude(coordinates.getLongitude() + 10);
                 break;
             case "RAIN":
-                System.out.println("It's rain now "+name);
+                outputWriter.writeMessage(this+": Brings me..");
                 coordinates.setLongitude(coordinates.getLongitude() + 5);
                 break;
             case "SNOW":
-                System.out.println("It's show now "+name);
+                outputWriter.writeMessage(this+": Snow is not good for me");
                 coordinates.setHeight(coordinates.getHeight() - 12);
                 break;
             case "FOG":
-                System.out.println("It's fog now "+name);
+                outputWriter.writeMessage(this+": Everything is so gray");
                 coordinates.setLongitude(coordinates.getLongitude() + 1);
                 break;
             default:
@@ -37,7 +37,7 @@ public class Helicopter extends Aircraft implements Flyable {
                 break;
         }
         if (coordinates.getHeight() <= 0){
-            System.out.println("Good by");
+            outputWriter.writeMessage(this+": I'm going down");
             weatherTower.unregister(this);
         }
     }

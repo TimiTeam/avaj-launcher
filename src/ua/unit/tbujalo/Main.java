@@ -1,6 +1,6 @@
 package ua.unit.tbujalo;
 
-import ua.unit.tbujalo.fileReader.ReadScenario;
+import ua.unit.tbujalo.fileWorker.ReadScenario;
 
 public class Main {
 

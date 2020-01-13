@@ -1,4 +1,4 @@
-package ua.unit.tbujalo.fileReader;
+package ua.unit.tbujalo.fileWorker;
 
 import ua.unit.tbujalo.WeatherTower;
 import ua.unit.tbujalo.transports.AircraftFactory;
